@@ -1,0 +1,348 @@
+html,body{
+    font-family: 'Hind', sans-serif;
+}
+.jumbotron{
+    /* background-color: #c038ce; */
+    background-color: #8064A2;
+    color : white;
+}
+
+#title{
+    text-align: center;
+    font-size: 1px;
+}
+#mnist_image_container{
+    position: absolute;
+    z-index: -1;
+    text-align: center;
+    left: 0;
+    right:0;
+
+    
+
+}
+#mnist_image_container img{
+    width:400px;
+    height: 400px;
+    display: none;
+}
+
+#relativing{
+    position: relative;
+}
+
+#canvasHolder{
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    left: 0;
+    right:0;
+
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+#dialog{
+    font-family: 'Hind', sans-serif;
+    font-size: 2em;
+  }
+.ui-dialog-titlebar{
+    font-family: 'Hind', sans-serif;
+    font-size: 2em;
+  }
+
+  .btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #b5abc2;
+    border-color: #8064A2;
+}
+
+/* Styling for dashboard */
+#dashboard-MNIST-count{
+    /* background-color: #8064A2; */
+    width: 7%;
+    float: left;
+    text-align: center;
+    border-width: 2px;
+    border-color:black;
+    border-style: solid;
+    height: 300%;
+
+    /* font-size: 1px; */
+}
+
+#dashboard-MNIST-label{
+    /* background-color: #8064A2; */
+    font-weight: bold;
+    width: 7%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    color: #8064A2;
+}
+#dashboard-column-label{
+    background-color: #8064A2;
+    width: 25%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    font-weight: bold;
+}
+#dashboard-title{
+    background-color: #eeeeee;
+    width: 97.5%;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+
+}
+
+#dashboard-subtitle{
+    background-color: #73bbfa;
+    width: 97.5%;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+
+}
+
+#dashboard-MNIST-usercount{
+    /* background-color: #8064A2; */
+    font-weight: bold;
+    width: 70%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    color: #eb4d4d;
+}
+
+#dashboard-column-label-index{
+    background-color: #fa5c5c;
+    width: 25%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    font-weight: bold;
+}
+
+
+
+#dashboard-MNIST-datasetsubmissionlabel{
+    /* background-color: #8064A2; */
+    background-color: #fa5c5c;
+    font-weight: bold;
+    width: 70%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+}
+
+#dashboard-total-label{
+    /* background-color: #8064A2; */
+    font-weight: bold;
+    width: 49%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    color: #8064A2;
+}
+#dashboard-total-number{
+    /* background-color: #8064A2; */
+    font-weight: bold;
+    width: 46%;
+    float: left;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    color: #8064A2;
+}
+
+#scrolldownimg{
+    cursor: pointer;
+    width: 50px ; 
+    height: 50px; 
+    position: fixed; 
+    bottom: 50px; 
+    right: 10px;
+    display: none;
+}
+
+#dashboard-subtitle-MNIST{
+    background-color: #73bbfa;
+    width: 97.5%;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+    cursor: pointer;
+
+
+}
+#dashboard-subtitle-MNIST:hover{
+    background-color: #73bbfac0;
+}
+#mnistuniquesubmissiondata{
+    display: none;
+}
+
+#goal{
+    text-align: center;
+    font-size: large;
+}
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  #loader-container{
+      display:none ;
+      text-align: center;
+      margin-top: 10%;
+  }
+  #loader-title{
+    font-size: 20px;
+
+  }
+  .flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #dashboard-subtitle-button{
+    background-color: #fa7373;
+    width: 95%;
+    text-align: center;
+    border-width: 3px;
+    border-color:black;
+    border-style: solid;
+
+}
+
+#gif{
+    text-align: center;
+}
+
+#instructions_button{
+    background-color: #8064A2;
+    /* width: 5px;
+    height: 5px; */
+}
+#instructions_button:hover{
+    cursor: pointer;
+}
+.btn:hover{
+    color: white;
+    cursor: default;
+
+}
+
+#instructions_block{
+    width: 50%;
+    margin: 0 auto;
+}
+#instructions_block_header{
+    text-align: center;
+}
+#consent_form_request{
+    font-size: 1.5em;
+}
+#consent_block{
+    width: 50%;
+    margin: 0 auto;
+}
+#consent_block_header{
+    text-align: center;
+}
+#consent_form_submit{
+    background-color: #8064A2;
+    text-align: center;
+    width:100%;
+}
+#consent_form_submit:hover{
+    cursor: pointer;
+}
+#submit-task{
+    background-color: #947cb1;
+
+}
+#submit-task:hover{
+    cursor: pointer;
+} 
+
+#task-container{
+    margin-top: 5%;
+
+}
+
+#points_container{
+    position: absolute;
+    top: 10px;
+    background: #8064A2;
+    border-radius: 11px;
+    color: #ffffff;
+    padding: 10px;
+    left: 10px;
+    text-align: center;
+}
+@media only screen and (max-width: 700px) {
+    #points_container{
+        display: none;
+        /* bottom: 0;  */
+        
+    }
+
+  }
+
+#points_container h1{
+    font-size: 32px;
+}
+#points_container p{
+    font-size: 18px;
+}
+
+.occlusiongif{
+    width:300px; 
+    height:400px;
+
+}
+
+#reveal-if-active {
+    opacity: 0;
+  }

@@ -1,0 +1,66 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Image Occlusion Task {% endblock title %}
+
+{% block head %}
+{{ super() }}
+<link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+{% endblock head %}
+
+
+{%block content%}
+    
+    <div id="task-container">
+        <div class ="container">
+            <div class="row justify-content-center" style="text-align: center;">
+                <span class="col-sm-4"></span>
+                <label class="control-label col-sm-4" for="user_answer"><p>Your almost done. Just answer one more question for us.</p><br>Which device did you use to uncover the hidden image?</label>
+                <span class="col-sm-4"></span>
+            </div>
+            <div class="row justify-content-center">
+                <span class="col-sm-4"></span>
+                <div class="col-sm-4">
+                    <div id="deviceselection">
+                        <label><input type="radio" id="r1" name="device" value="mouse" onclick="revealinputtext()" checked> Mouse</label><br>
+                        <label><input type="radio" id="r2" name="device" value="touchpad" onclick="revealinputtext()"> Laptop Touchpad</label><br>
+                        <label><input type="radio" id="r4" name="device" value="touchpad" onclick="revealinputtext()"> Mobile/Tablet Tactile Screen</label><br>
+                        <label><input type="radio" id="r3" name="device" value="other" onclick="revealinputtext()"> Other</label><br>
+                    </div>
+                      <div id="reveal-if-active">
+                        <label for="other">Enter name of device: </label>
+                        <input type="text" id="other" name="other">
+                    </div>
+                </div>
+                <span class="col-sm-4"></span>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <span class="col-sm-4"></span>
+                <div class="col-sm-4">
+                    <button class=" form-control btn btn-primary" name="submit" id="submit-task" onclick="submit_result()">Submit</button>
+                </div>
+                <span class="col-sm-4"></span>
+            </div>
+        </div>     
+    </div>
+
+
+    
+
+   
+
+{%endblock content%}
+
+{% block scripts %}
+  {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/p5.js')}}"></script>
+   <script src="{{ url_for('static', filename='js/lib/jquery-ui.js')}}" ></script>
+   <!-- have available the actual label on javascript -->
+   <script type="text/javascript">
+    var current_task_number = "{{current_task_number}}";
+    var current_user_id = "{{current_user_id}}";
+    console.log("Current task number: ",current_task_number);
+    console.log("Current User ID",current_user_id)
+    </script>
+   <script src="{{ url_for('static', filename='js/device.js')}}"></script>
+{% endblock %}

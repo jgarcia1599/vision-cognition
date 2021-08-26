@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Thank you!{% endblock title %}
+
+{%block head%}
+{{ super() }}
+<link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+{%endblock head%}
+
+{%block content%}
+    <div class="container-lg" id="title">
+        <div class="jumbotron vertical-center">
+            <div class="container-fluid">
+            <h1 class="display-4">Image Occlusion Task</h1>
+            <div class="btn">
+                <p class="lead">An experiment conducted by the Laboratory for Computer-Human Intelligence at NYUAD.</p>
+                <!-- Button next to bootstrao: https://stackoverflow.com/questions/21931956/button-next-to-text-with-bootstrap -->
+            </div>
+            </div>        
+        </div>
+    </div>
+    <div class="container" style="text-align: center;">
+        <div class="row">
+            <div class="col align-self-center">
+                <h1>Thank you for submitting!</h1> 
+                <p id="submission_instructions">Your assistance is highly appreciated. We will review your response and approve it within the next 48 hours. </p>
+                {% if submission_url%}
+                <form class="form-signin" method="POST" action="{{submission_url}}">
+                    <h1>As a Amazon Mturk Worker, you need to click on the submit button below to validate your response.</h1>
+                    <button class="btn btn-primary" type="submit">Submit to Mtruk</button>
+                  </form>
+                {%endif%}  
+            </div>
+        </div>       
+    </div>
+{%endblock content%}

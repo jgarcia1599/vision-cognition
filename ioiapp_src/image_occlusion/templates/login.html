@@ -1,0 +1,39 @@
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/lib/jquery-ui.css')}}">  
+<link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{{url_for('.static', filename='style/login.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='style/style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container-lg" id="title">
+  <div class="jumbotron vertical-center">
+      <div class="container-fluid">
+        <h1 class="display-4">Xvision Administration</h1>
+          <p class="lead">An experiment conducted by the Laboratory for Computer-Human Intelligence at NYUAD.</p>
+           <!-- Button next to bootstrao: https://stackoverflow.com/questions/21931956/button-next-to-text-with-bootstrap -->
+      </div>        
+  </div>
+</div>
+    <div class="container">
+
+      <form class="form-signin" method="POST" action="{{url_for('admin')}}">
+        <h2 class="form-signin-heading" style="text-align: center;">Sign In</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.rememberme) }}
+        <button type="submit" id="consent_form_submit" class="btn btn-primary">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+{% endblock %}

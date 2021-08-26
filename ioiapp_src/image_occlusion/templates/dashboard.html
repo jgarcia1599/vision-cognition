@@ -1,0 +1,144 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Image Occlusion Task {% endblock title %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/lib/jquery-ui.css')}}">  
+<link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+{% endblock head %}
+
+{%block content%}
+    <div class="container-lg" id="title">
+        <div class="jumbotron vertical-center">
+            <div class="container-fluid">
+              <h1 class="display-4">XVision Aministration</h1>
+              <div class="btn">
+                <p class="lead">An experiment conducted by the Laboratory for Computer-Human Intelligence at NYUAD.</p>
+                 <!-- Button next to bootstrao: https://stackoverflow.com/questions/21931956/button-next-to-text-with-bootstrap -->
+              </div>
+            </div>        
+        </div>
+    </div>
+    <div id="goal">
+        <p>Goal: 70,000 unique images x 5 unique users.</p>
+    </div>
+    <div class="container" style="min-width:1000px;">
+        <div class="row" id="dashboard-title">
+            <h1>Dashboard</h1>
+
+        </div>
+        <div class="row" id="dashboard-subtitle">
+            <h1>General Data</h1>
+        </div>
+        <div class="row">
+            <div id="dashboard-column-label">
+                <h1>MNIST Label</h1>
+            </div>
+            {% for count in per_label_submission_count %}
+            <div id="dashboard-MNIST-label">
+                <h1> {{loop.index - 1}}</h1>
+                <!-- <h2> Number of Submissions {{count}}</h2> -->
+            </div>
+            {%endfor%}
+        </div>
+        <div class="row">
+            <div id="dashboard-column-label">
+                <h1> Total <br> Submissions</h1>
+            </div>
+            {% for count in per_label_submission_count %}
+            <div id="dashboard-MNIST-count">
+                <p><br><br>{{count}}<br><br><br></p>
+            </div>
+            {%endfor%}
+
+        </div>
+        <div class="row" id="dashboard-subtitle">
+            <h1>User Data</h1>
+        </div>
+        <div class="row">
+            <div id="dashboard-column-label">
+                <h1># of Users </h1>
+            </div>
+            <div id="dashboard-MNIST-usercount">
+                <h1> {{user_count}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div id="dashboard-column-label">
+                <h1>MNIST Label</h1>
+            </div>
+            {% for label, count in unique_submission_dictionary.items():  %}
+            <div id="dashboard-MNIST-label">
+                <h1> {{label}}</h1>
+                <!-- <h2> Number of Submissions {{count}}</h2> -->
+            </div>
+            {%endfor%}
+        </div>
+        <div class="row">
+            <div id="dashboard-column-label">
+                <h1>Unique Submissions</h1>
+            </div>
+            {% for label, count in unique_submission_dictionary.items():  %}
+            <div id="dashboard-MNIST-count">
+                <!-- <h1> {{loop.index - 1}}</h1> -->
+                <p><br><br>{{count}}<br><br><br></p>
+            </div>
+            {%endfor%}
+        </div>
+
+        <div class="row">
+            <div id="dashboard-total-label">
+                <h1> Total Tasks Submitted: </h1>
+                <!-- <h2> Number of Submissions {{count}}</h2> -->
+            </div>
+            <div id="dashboard-total-number">
+                <h1> {{total_task_count}}</h1>
+                <!-- <h2> Number of Submissions {{count}}</h2> -->
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <img src="{{url_for('static',filename='img/arrow.png')}}" id="scrolldownimg">
+    <div class="container" id="MNIST_DATASET_DATA">
+        <div class="row" id="dashboard-subtitle-MNIST" onclick="showMNISTData()">
+            <h1>MNIST Dataset Unique Submission Count</h1>
+        </div>
+        <div id="mnistuniquesubmissiondata">
+            <div class="row">
+                <div id="dashboard-column-label-index">
+                    <h1>MNIST Dataset Index</h1>
+                </div>
+                <div id="dashboard-MNIST-datasetsubmissionlabel">
+                    
+                    <h1><br>Unique Submissions<br></h1>
+                </div>
+            </div>
+            {%for item in MNIST_dataset_items: %}
+            <div class="row">
+                <div id="dashboard-column-label">
+                    <h1>{{item}}</h1>
+                </div>
+                <div id="dashboard-MNIST-usercount">
+                    <h1> {{MNIST_dataset_items[item]}}</h1>
+                </div>
+            </div>
+
+            {%endfor%}
+        </div>
+    </div>    
+
+
+
+     
+{%endblock content%}
+
+{% block scripts %}
+  {{super()}}
+  <script src="{{ url_for('static', filename='js/jquery-ui.js')}}" ></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
+
+
+{% endblock %}

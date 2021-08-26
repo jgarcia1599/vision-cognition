@@ -1,0 +1,25 @@
+# Created by https://www.gitignore.io/api/virtualenv
+# Edit at https://www.gitignore.io/?templates=virtualenv
+
+### VirtualEnv ###
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+pyvenv.cfg
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-selfcheck.json
+__pycache__/
+
+# End of https://www.gitignore.io/api/virtualenv
+
+# MNIST Dataset
+data/
+
+#ds_store
+**/.DS_Store

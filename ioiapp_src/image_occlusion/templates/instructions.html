@@ -1,0 +1,100 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Image Occlusion Task {% endblock title %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/lib/jquery-ui.css')}}">  
+<link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+{% endblock head %}
+
+{%block content%}
+    <div class="container-lg" id="title">
+        <div class="jumbotron vertical-center">
+            <div class="container-fluid">
+              <h1 class="display-4">Image Occlusion Task</h1>
+                <p class="lead">An experiment conducted by the Laboratory for Computer-Human Intelligence at NYUAD.</p>
+                 <!-- Button next to bootstrao: https://stackoverflow.com/questions/21931956/button-next-to-text-with-bootstrap -->
+            </div>        
+        </div>
+    </div>
+    <div class="container" id="gif">
+        <img class="occlusiongif" src="{{ url_for('static', filename = 'img/occlusion.gif') }}">
+    </div>
+    <div class="container" id="instructions_block">
+        <div id="instructions_block_header">
+            <div class="page-header">
+                <h1>Instructions</h1>      
+            </div>
+            <p><b>Project Description:</b> This is a study of how humans detect recognize characters and objects in images.</p>
+            <br>
+        </div>
+        <ol>
+            <li>On this page, please <b>read</b> and sign the consent form below. </li>
+            <li>On the next page, you will see a purple mask covering an image. Please do the following:
+                <ul>
+                    <li><b>Uncover the image:</b> Drag and click your mouse on top of the opaque mask to reveal the image below.</li>
+                    <li><b>Submit a Response:</b> Once you know what the image behind the opaque mask represents, which is a random digit between 0 and 9, enter your guess in the textbox and click the submit button to provide your response.</li>
+                    <li><b>Minimize Image Uncovered and Respond Quickly:</b> You will start with a score of 100 points. <b>You</b> will lose points based on <b>(a) the amount</b> of the mask you uncover and <b>(b)</b> how long you take <b>to provide a response.</b> Take that into account as you progress through the HIT.</li>
+
+                </ul>
+            </li>
+                
+                
+                
+
+            <br>
+        </ol>
+    <div id="consent_form_request">
+        <p>Please read and submit the consent form below in order to proceed with the Human Intelligence Task</p>
+
+    </div>
+    </div>
+
+
+    <div class="container" id="consent_block">
+        <div id="consent_block_header">
+            <div class="page-header">
+                <h1>Consent Form</h1>      
+            </div>
+        </div>
+        <p>You are invited to participate in a research study in human vision cognition. This study is being conducted by researchers at New York University Abu Dhabi.</p>      
+        <ul>
+            <li><p><b>What will I be asked to do and how much time will it take?</b> If you agree to take part in this study, you will be asked to complete an online task to "erase" an occluded image until you are confident that you recognize the underlying object in the image, upon which you should submit your answer. The tasks will take you approximately 5 - 15 minutes to complete.</p> </li>
+            <li><p><b>Will being in this research study help me in any way?</b> The research will improve our understanding on how humans recognize objects in images. We hope that your participation in the study would help create datasets that can be used to train advanced algorithms.</p></li>
+            <li><p><b>What are my risks of being in this research study? </b> We believe there are minimal risks associated with this research study, however, a risk of breach of confidentiality always exists.</p></li>
+            <li><p><b>How will my personal information be protected?</b> We have taken the following steps to protect your personal information: the online web-platform utilizes a Secure Socket Layer (SSL) for communication, data collected will be stored on secure data infrastructure, analysis will be performed and presented on the aggregate of collected data, data shared, if any, will be de-identified. We do not intend intend to collect identifiable information. Information, not containing personal identifiers, may be used in future research or shared with other researchers.</p></li>
+            <li><p><b>Will I be given any money or other compensation for being in this research study?</b> After completing the tasks in this study and submitting a key to validate your participation, you will be compensated for your participation according to the pre-defined amount presented to you (if any) on the page advertizing this study. You will be compensated in approximately 3 working days after submission of your study responses, and once the quality of submission has been verified.</p></li>
+            <li><p><b>What happens if I say yes, but I change my mind later?</b> Your participation in this study is voluntary. If you agree to be in the study, but later change your mind, you may drop out at any time.</p></li>
+            <li><p><b>Who can I talk to if I have questions?</b> If you have questions about this study or if you have a research-related problem, you may contact the researcher(s) at: <a href="mailto:jfg388+occlusion@nyu.edu">jfg388+occlusion@nyu.edu</a></p></li>
+        </ul> 
+        {%if turkuser == True%}
+            <h2>Thank you, valuable Mturk User</h2>
+            {%if assignmentId != 'ASSIGNMENT_ID_NOT_AVAILABLE'%}
+                <form action="{{url_for('process_consent_form',turkuser = turkuser,assignmentId = assignmentId , hitId = hitId ,turkSubmitTo = turkSubmitTo, workerID = workerID)}}" method="POST">
+                    
+                        <div class="form-group">
+                            <p><b>By clicking “I agree” below you are indicating that you are at least 18 years old, have read this consent form and agree to participate in this research study. You are free to drop out at any time.</b></p>
+                            <label><input type="checkbox" id="consent" name="consent" required> I agree</label>
+                            <!-- <input type="radio" class="form-control" id="consent" name="consent" placeholder="I agree" required>
+                            <p>I agree</p> -->
+                        </div>
+                            <button type="submit" id="consent_form_submit" class="btn btn-primary">Submit</button>
+                </form> 
+            {%endif%}  
+        {%else%} 
+        <form action="{{url_for('process_consent_form',turkuser = turkuser)}}" method="POST">
+            <div class="form-group">
+                <p><b>By clicking “I agree” below you are indicating that you are at least 18 years old, have read this consent form and agree to participate in this research study. You are free to drop out at any time.</b></p>
+                <label><input type="checkbox" id="consent" name="consent" required> I agree</label>
+                <!-- <input type="radio" class="form-control" id="consent" name="consent" placeholder="I agree" required>
+                <p>I agree</p> -->
+            </div>
+            <button type="submit" id="consent_form_submit" class="btn btn-primary">Submit</button>
+        </form>   
+        {%endif%}
+
+    </div>
+     <br>
+     <br>
+{%endblock content%}
